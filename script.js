@@ -1,4 +1,4 @@
-// BEGIN Daris
+/* BEGIN Daris D. */
 $(document).ready(function () {
     console.log("Ready!");
 
@@ -30,8 +30,9 @@ $(document).ready(function () {
                 if (response.data && response.data.length > 0) {
                     console.log("Routes found:", response.data);
                     // Pass the specific array to Member B
-                    displayRoutes(response.data);
+                    displayRoutes(response.data, 'route'); // We are searching for Routes
                 } else {
+                    $('#results-area').empty();
                     showError("No routes found for '" + searchTerm + "'.");
                 }
             },
@@ -42,9 +43,68 @@ $(document).ready(function () {
         });
     });
 });
-// END Daris
 
-/* BEGIN Member D */
+// Global Loading Spinner & Animation
+$(document).ajaxStart(function () {
+    $('#results-area').html('<div class="text-center my-4"><div class="spinner-border text-primary"></div></div>').show();
+});
+
+// When closing the schedule modal, ensure results remain visible
+$('#scheduleModal').on('hidden.bs.modal', function () {
+    $('#results-area').show();
+    $('#results-area .spinner-border').remove();
+});
+
+
+$(document).ajaxStop(function () {
+    // Tag Routes and Stops with Badges
+    $('#results-area .card').each(function () {
+        var btn = $(this).find('.btn-details');
+        var title = $(this).find('.card-title');
+        var id = btn.attr('data-id');
+        var type = btn.attr('data-type');
+
+        // Avoid adding duplicate elements
+        if (title.find('.badge').length > 0) return;
+
+        var badgeClass = '';
+        var badgeText = '';
+        var subtitleText = '';
+
+        if (type === 'route') {
+            subtitleText = 'Route ID: ' + id;
+            if (id === 'Red') {
+                badgeClass = 'bg-danger';
+                badgeText = 'Red Line';
+            } else if (id === 'Blue') {
+                badgeClass = 'bg-primary';
+                badgeText = 'Blue Line';
+            } else if (id === 'Orange') {
+                badgeClass = 'bg-warning';
+                badgeText = 'Orange Line';
+            } else if (id.indexOf('Green') === 0) {
+                badgeClass = 'bg-success';
+                badgeText = 'Green Line';
+            } else {
+                badgeClass = 'bg-secondary';
+                badgeText = id;
+            }
+        } else {
+            badgeClass = 'bg-info';
+            badgeText = 'Stop';
+            subtitleText = 'Stop ID: ' + id;
+        }
+
+        title.append(' <span class="badge ' + badgeClass + ' ms-2">' + badgeText + '</span>');
+        title.after('<p class="text-muted small mb-2">' + subtitleText + '</p>');
+    });
+
+    $('#results-area').hide().fadeIn(300);
+});
+/* END Daris D. */
+
+
+/* BEGIN Art L.*/
 // Function to display errors using Bootstrap alerts
 function showError(message) {
     var alertHtml = `
@@ -112,9 +172,10 @@ $(document).ready(function () {
         }
     });
 });
-/* END Member D */
+/* END Art L. */
 
-/* BEGIN Bert */
+
+/* BEGIN Bert K.*/
 function displayRoutes(routesArray, type) {
     // Clear the results area
     $('#results-area').empty();
@@ -150,9 +211,10 @@ function displayRoutes(routesArray, type) {
         $('#results-area').append(colDiv);
     });
 }
-/* END Bert */
+/* END Bert K. */
 
-/* BEGIN Member C */
+
+/* BEGIN Anis R. */
 // Teammate C will add Event Listeners here for the "Details" buttons
 // Example: $('#results-area').on('click', '.btn-details', function() { ... });
-/* END Member C */
+/* END Anis R. */
