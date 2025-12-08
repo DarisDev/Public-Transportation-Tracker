@@ -114,17 +114,43 @@ $(document).ready(function () {
 });
 /* END Member D */
 
-/* BEGIN Member B */
-// Teammate B will implement displayRoutes(data) here   
-// Helper to prevent crash while testing
-function displayRoutes(data) { console.warn("displayRoutes not implemented yet", data); }
-/* END Member B */
+/* BEGIN Bert */
+function displayRoutes(routesArray, type) {
+    // Clear the results area
+    $('#results-area').empty();
 
-/* BEGIN Member D */
-// Teammate D will implement showError(message) here
-// Helper to prevent crash while testing
-function showError(message) { alert(message); }
-/* END Member D */
+    // Iterate through routesArray
+    $.each(routesArray, function (index, route) {
+        // Create Card Container
+        var colDiv = $('<div>').addClass('col-md-4 mb-4');
+
+        var cardClass = 'card h-100';
+        if (route.id === 'Red') cardClass += ' border-danger';
+        else if (route.id === 'Blue') cardClass += ' border-primary';
+        else if (route.id === 'Orange') cardClass += ' border-warning';
+        else if (route.id.startsWith('Green')) cardClass += ' border-success';
+
+        var card = $('<div>').addClass(cardClass);
+        var cardBody = $('<div>').addClass('card-body');
+
+        var titleText = route.attributes.long_name || route.attributes.short_name;
+        var cardTitle = $('<h5>').addClass('card-title').text(titleText);
+        var cardText = $('<p>').addClass('card-text').text(route.attributes.description);
+
+        // Button with Type Distinction
+        var detailsBtn = $('<button>')
+            .addClass('btn btn-primary btn-details')
+            .attr('data-id', route.id)
+            .attr('data-type', type || 'route') // <--- NEW: Stores if it's a 'route' or 'stop'
+            .text('View Schedule');
+
+        cardBody.append(cardTitle, cardText, detailsBtn);
+        card.append(cardBody);
+        colDiv.append(card);
+        $('#results-area').append(colDiv);
+    });
+}
+/* END Bert */
 
 /* BEGIN Member C */
 // Teammate C will add Event Listeners here for the "Details" buttons
