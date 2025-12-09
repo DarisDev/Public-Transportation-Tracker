@@ -32,7 +32,6 @@ body {
 }
 
 
-/* BEGIN Daris - Hero Section */
 .hero-section {
     height: 450px;
     background-image: url('Assets/Images/Train_Hero_Image.jpg');
@@ -99,12 +98,10 @@ body {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
 }
-
-/* END Daris - Hero Section */
-
 /* END Daris */
 
-/* BEGIN Bert - Feature Card Enhancements */
+
+/* BEGIN Bert */
 .feature-card {
     position: relative;
     overflow: hidden;
@@ -128,7 +125,7 @@ body {
 
 /* END Bert */
 
-/* BEGIN Daris – Search Card Enhancement */
+/* BEGIN Daris */
 .search-card {
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(12px);
@@ -152,11 +149,11 @@ body {
     font-size: 1.2rem;
     color: #666;
     z-index: 10;
-    /* Ensure icon is above input */
+    
 }
 
 .search-input-with-icon {
     padding-left: 45px !important;
 }
 
-/* END Daris – Search Card Enhancement */
+/* END Daris */
