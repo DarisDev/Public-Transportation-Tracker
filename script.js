@@ -3,18 +3,18 @@ $(document).ready(function () {
     console.log("Ready!");
 
 
-    // Smooth Scroll
+
     $('a[href^="#"]').on('click', function (event) {
         var target = $(this.getAttribute('href'));
         if (target.length) {
             event.preventDefault();
             $('html, body').stop().animate({
-                scrollTop: target.offset().top - 70 // Offset for fixed navbar if needed
+                scrollTop: target.offset().top - 70
             }, 800);
         }
     });
 
-    // Responsive Search Placeholder
+
     function updatePlaceholder() {
         if ($(window).width() < 768) {
             $('#search-input').attr('placeholder', 'Search routes (e.g., 1, 50)');
@@ -23,7 +23,7 @@ $(document).ready(function () {
         }
     }
 
-    // Run on load and resize
+
     updatePlaceholder();
     $(window).resize(updatePlaceholder);
 
