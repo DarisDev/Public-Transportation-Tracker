@@ -5,19 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Public Transportation Tracker</title>
-    <!-- Bootstrap 5 CSS -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230d6efd%22></rect><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-size=%2270%22 fill=%22white%22 font-family=%22sans-serif%22>T</text></svg>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
     <!-- BEGIN Daris -->
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-0">
         <div class="container">
-            <a class="navbar-brand" href="#">Transit Tracker</a>
+            <a class="navbar-brand fw-bold" href="#">PTT</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -27,48 +27,174 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Search Section -->
-    <div class="container text-center mb-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card shadow-sm p-4">
-                    <h2 class="mb-4">Find Your Route</h2>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Search for a route or stop..."
-                            aria-label="Search" id="search-input">
-                        <button class="btn btn-primary" type="button" id="search-btn">Search</button>
-                        <!-- BEGIN Art L. -->
-                        <button class="btn btn-secondary" type="button" id="btn-near-me">Find Near Me</button>
-                        <!-- END Art L. -->
+    <!-- Hero Section -->
+    <div class="hero-section d-flex flex-column align-items-center justify-content-center text-center text-white mb-5">
+        <div class="container relative-z-2">
+            <h1 class="display-4 fw-bold hero-animate">Public Transportation Tracker</h1>
+            <p class="lead mb-4 hero-animate" style="animation-delay: 0.2s;">Real-time MBTA route and arrival
+                information in Boston, MA</p>
+            <a href="#search-section" class="btn btn-light btn-lg rounded-pill fw-bold text-primary hero-btn">Start
+                Searching</a>
+        </div>
+    </div>
 
+    <!-- Search Section -->
+    <section id="search-section">
+        <div class="container text-center mb-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="search-card">
+                        <h2 class="mb-4 fw-bold">Find Your Route</h2>
+                        <div class="input-group mb-3 position-relative">
+                            <i class="bi bi-search search-input-icon"></i>
+                            <input type="text" class="form-control search-input-with-icon rounded-start"
+                                placeholder="Search for a route (e.g., 1, 50, Green-B)" aria-label="Search"
+                                id="search-input">
+                            <button class="btn btn-primary fw-bold" type="button" id="search-btn">
+                                <i class="bi bi-search me-1"></i> Search
+                            </button>
+                            <!-- BEGIN Art -->
+                            <button class="btn btn-secondary fw-bold" type="button" id="btn-near-me">
+                                <i class="bi bi-geo-alt me-1"></i> Find Near Me
+                            </button>
+                            <!-- END Art -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- END Daris -->
+    </section>
 
     <!-- Alert Container -->
     <div id="alert-container" class="container"></div>
 
     <!-- Results Area -->
-    <div id="results-area" class="container row mx-auto"></div>
+    <div id="results-area" class="container row mx-auto mb-5"></div>
 
-    <!-- BEGIN Daris -->
-    <!-- Footer -->
-    <footer class="bg-light text-center text-lg-start mt-5 border-top">
-        <div class="text-center p-3">
-            © 2025 Public Transportation Tracker Group
-        </div>
-    </footer>
     <!-- END Daris -->
+
+    <!-- BEGIN Bert -->
+    <!-- Feature Cards showing core app functionalities -->
+    <div class="container mb-5">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="card p-3 shadow-sm h-100 feature-card">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold"><i class="bi bi-search"></i> Live Route Search</h5>
+                        <p class="card-text">Find MBTA routes in real time.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3 shadow-sm h-100 feature-card">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold"><i class="bi bi-clock-history"></i> Stop Predictions</h5>
+                        <p class="card-text">Check arrival times for any stop.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3 shadow-sm h-100 feature-card">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold"><i class="bi bi-compass"></i> Easy Navigation</h5>
+                        <p class="card-text">Simple and clean UI for quick access.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Bert -->
+
+    <!-- BEGIN Anis -->
+    <!-- Schedule Modal -->
+    <div class="modal fade" id="scheduleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Schedule Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modal-schedule-content">
+                    <!-- Schedule details will be injected here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Contact Us</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Meet the Team:</strong> We are a group of passionate developers building useful tools for
+                        travelers.</p>
+                    <p><strong>Course:</strong> Client Programming</p>
+                    <p><strong>School:</strong> RIT Kosovo (A.U.K)</p>
+                    <p><strong>Email us for any issue:</strong> <a href="mailto:ar1965@g.rit.edu">ar1965@g.rit.edu</a>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Anis -->
+
+    <!-- BEGIN Art -->
+    <!-- About Bootstrap Modal -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="aboutModalLabel">About Transit Tracker</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>The Public Transportation Tracker allows users to view real-time transit data for Boston, MA
+                        effortlessly. Whether you need to find a specific route or locate the nearest stop, this tool
+                        provides
+                        up-to-date information.</p>
+                    <p><strong>Powered by:</strong> MBTA Open Data API v3</p>
+                    <h6>Main Features:</h6>
+                    <ul>
+                        <li>Route search</li>
+                        <li>Stop lookup</li>
+                        <li>Arrival predictions</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="text-center py-3 text-muted small">
+        © 2025 Public Transportation Tracker — Daris D. Anis R. Art L. Bert K.
+        <br> RIT Kosovo — Client Programming
+    </footer>
+    <!-- END Art -->
+
+
+
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
